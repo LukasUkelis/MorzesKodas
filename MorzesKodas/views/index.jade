@@ -3,3 +3,9 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  div
+    form(action="/SendText" method="POST")
+        label(for="fraze") Fraze: 
+        input(type="text" id="fraze" name="fraze")
+        button(type="submit") Konvertuoti
+

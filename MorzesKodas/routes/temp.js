@@ -42,11 +42,15 @@ spWrite=function(msg)
   sp.write(msg);
 }
 
-router.post('/SendText',function(req,res)
+router.post('/SetLed',function(req,res)
 {
-  var cmd = req.body.fraze;
-  console.log(cmd);
-  spWrite(cmd);
+
+  var cmd = req.body;
+  var msg = cmd.ID + "-" + cmd.State;
+  spWrite(msg);
+  res.status(200).send('OK');
+
+
 });
 
 // LED lemputes busenos parodymas
@@ -67,7 +71,6 @@ router.get('/', function(req, res)
     //             leds[i].state = "OFF";
     //         }
     //     }
-          res.render('index', { title: 'LED' });
     //     res.render('index', {title: 'LED', data:leds});
     // });
 });
@@ -83,7 +86,7 @@ router.post('/getLed', function(req, res)
     {
         if(led.length == 1)
         {
-          res.json(led[0]);
+            res.json(led[0]);
         }
         else
         {
